@@ -34,7 +34,8 @@ public class main {
         System.out.println("2. Prendre une réservation");
         System.out.println("3. Voir la liste de chambre");
         System.out.println("4. Voir les réservations");
-        System.out.println("5. Sortir");
+        System.out.println("5. Voir les réservations d'un client");
+        System.out.println("6. Sortir");
 
         switch (scanner.next())
         {
@@ -46,7 +47,9 @@ public class main {
                 break;
             case "4" : voirLesReservations(hotel);
                 break;
-            case "5" : leave();
+            case"5" : voirLesReservationsDunClient(hotel);
+                break;
+            case "6" : leave();
                 break;
 
             default: Menu(hotel);
@@ -182,6 +185,51 @@ public class main {
         for (Reservation reservation: hotel.getReservations())
         {
             System.out.println(reservation.toString());
+        }
+
+        Menu(hotel);
+    }
+
+    public static void voirLesReservationsDunClient(Hotel hotel) {
+
+        if (hotel.getClients().isEmpty()) {
+            System.out.println("ERROR------------------------------------");
+            System.out.println("Oups, vous n'avez aucun client");
+            System.out.println("Vous allez devoir recommencer");
+            System.out.println("Nous allons vous rediriger pour créer un client");
+            System.out.println("REDIRECTION-------------------------------");
+            ajouterUnClient(hotel);
+            return;
+        }
+
+        System.out.println();
+        System.out.println("--------------PARTIE CLIENT--------------");
+        System.out.println("-----------------------------------------");
+
+        System.out.println();
+        System.out.println("Il faut d'abord selectionner un client !");
+        System.out.println("Voici la liste de clients de l'hotel : ");
+
+        for (Client client: hotel.getClients())
+        {
+            System.out.println(client);
+        }
+
+        System.out.println("Selectionner le client que vous souhaitez affecter");
+        System.out.println("Entrez son numéro");
+
+        Client clientCourant = hotel.getClients().get(scanner.nextInt() -1);
+        ArrayList<Reservation> reservationsFromOneClient =  hotel.getReservationsFromOneClient(clientCourant);
+
+        System.out.println();
+        System.out.println("------------SES RESERVATIONS-------------");
+        System.out.println("-----------------------------------------");
+        System.out.println();
+
+        System.out.println("Voici les réservations de votre client");
+
+        for (Reservation oneReservationFromOneClient: reservationsFromOneClient) {
+            System.out.println(oneReservationFromOneClient.toString());
         }
 
         Menu(hotel);

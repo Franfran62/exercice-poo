@@ -54,8 +54,8 @@ public class Reservation {
             statutString = "terminé";
         }
         return "La réservation numéro " + id +
-                " est " + statutString +
-                ", elle concerne le client " + client +
-                "et les chambres " + listeDeChambres.toString();
+                " est " + statutString + '\n' +
+                "Elle concerne le client " + client + '\n' +
+                "et les chambres " + '\n' + listeDeChambres.toString();
     }
 }

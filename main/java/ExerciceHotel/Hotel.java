@@ -43,4 +43,18 @@ public class Hotel {
     public void setNewReservation(Reservation reservation){
         this.reservations.add(reservation);
     }
+
+    public ArrayList<Reservation> getReservationsFromOneClient(Client client) {
+
+        ArrayList<Reservation> response = new ArrayList<Reservation>();
+
+        for (Reservation reservation: reservations) {
+            if(reservation.getClient().getId() == client.getId())
+            {
+                response.add(reservation);
+            }
+        }
+
+        return response;
+    }
 }

@@ -75,8 +75,8 @@ public class Chambre {
             statutString = "Occupé";
         }
         return "La chambre numéro " + numero +
-                " est " + statutString +
-                ", elle possède " + nombreDeLits + " lits, " +
-                "son prix est de : " + prix + " euros";
+                " est " + statutString + '\n' +
+                "Elle possède " + nombreDeLits + " lits. " + '\n' +
+                "Son prix est de : " + prix + " euros" +'\n';
     }
 }
