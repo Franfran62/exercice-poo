@@ -7,11 +7,13 @@ public class main {
 
     static Scanner scanner = new Scanner(System.in);
 
+    static Hotel hotel = new Hotel();
+
     public static void main(String[] args) {
 
         System.out.println("Bienvenue dans le logiciel de gestion de votre Hotêl");
         System.out.println("Pour commencer, entrez un nom votre hotêl");
-        Hotel hotel = new Hotel(scanner.next());
+        hotel.setNom(scanner.next());
         System.out.println("-----------------------------------------");
         System.out.println("Bienvenue dans l'hotel "+ hotel.getNom());
         System.out.println("Voici un listing des chambres : ");
@@ -21,9 +23,9 @@ public class main {
         }
 
         System.out.println();
-        Menu(hotel);
+        Menu();
     }
-    public static void Menu(Hotel hotel) {
+    public static void Menu() {
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println("-------------------MENU------------------");
@@ -39,23 +41,23 @@ public class main {
 
         switch (scanner.next())
         {
-            case "1" : ajouterUnClient(hotel);
+            case "1" : ajouterUnClient();
                 break;
-            case "2" : prendreUneReservation(hotel);
+            case "2" : prendreUneReservation();
                 break;
-            case "3" : voirLesChambres(hotel);
+            case "3" : voirLesChambres();
                 break;
-            case "4" : voirLesReservations(hotel);
+            case "4" : voirLesReservations();
                 break;
-            case"5" : voirLesReservationsDunClient(hotel);
+            case"5" : voirLesReservationsDunClient();
                 break;
             case "6" : leave();
                 break;
 
-            default: Menu(hotel);
+            default: Menu();
         }
     }
-    public static void ajouterUnClient(Hotel hotel) {
+    public static void ajouterUnClient() {
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println("-----------AJOUT D'UN CLIENT-------------");
@@ -75,9 +77,9 @@ public class main {
         hotel.setClient(client);
         System.out.println("Félicitation ! Le client à bien été créé !");
 
-        Menu(hotel);
+        Menu();
     }
-    public static void prendreUneReservation(Hotel hotel) {
+    public static void prendreUneReservation() {
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println("--------------RESERVATION----------------");
@@ -134,7 +136,7 @@ public class main {
             System.out.println("Vous allez devoir recommencer");
             System.out.println("Nous allons vous rediriger pour créer un client");
             System.out.println("REDIRECTION-------------------------------");
-            ajouterUnClient(hotel);
+            ajouterUnClient();
             return;
         }
             for (Client client: hotel.getClients()) {
@@ -149,9 +151,9 @@ public class main {
 
         System.out.println();
         System.out.println("Votre reservation à bien été pris en compte !");
-        Menu(hotel);
+        Menu();
     }
-    public static void voirLesChambres(Hotel hotel) {
+    public static void voirLesChambres() {
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println("--------------LES CHAMBRES---------------");
@@ -163,9 +165,9 @@ public class main {
             System.out.println(chambre.toString());
         }
 
-        Menu(hotel);
+        Menu();
     }
-    public static void voirLesReservations(Hotel hotel) {
+    public static void voirLesReservations() {
 
         System.out.println();
         System.out.println("-----------------------------------------");
@@ -176,7 +178,7 @@ public class main {
         if (hotel.getReservations().isEmpty())
         {
             System.out.println("Il n'y a aucune réservation");
-            Menu(hotel);
+            Menu();
             return;
         }
 
@@ -187,10 +189,9 @@ public class main {
             System.out.println(reservation.toString());
         }
 
-        Menu(hotel);
+        Menu();
     }
-
-    public static void voirLesReservationsDunClient(Hotel hotel) {
+    public static void voirLesReservationsDunClient() {
 
         if (hotel.getClients().isEmpty()) {
             System.out.println("ERROR------------------------------------");
@@ -198,7 +199,7 @@ public class main {
             System.out.println("Vous allez devoir recommencer");
             System.out.println("Nous allons vous rediriger pour créer un client");
             System.out.println("REDIRECTION-------------------------------");
-            ajouterUnClient(hotel);
+            ajouterUnClient();
             return;
         }
 
@@ -232,7 +233,7 @@ public class main {
             System.out.println(oneReservationFromOneClient.toString());
         }
 
-        Menu(hotel);
+        Menu();
     }
 
     public static void leave() {

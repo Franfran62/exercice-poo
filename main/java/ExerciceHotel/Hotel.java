@@ -11,8 +11,7 @@ public class Hotel {
     private ArrayList<Reservation> reservations;
 
 
-    public Hotel(String nom) {
-        this.nom = nom;
+    public Hotel() {
         chambres = new ArrayList<Chambre>();
         clients = new ArrayList<Client>();
         reservations = new ArrayList<Reservation>();
@@ -21,7 +20,9 @@ public class Hotel {
             chambres.add(new Chambre(true));
         }
     }
-
+    public void setNom(String nom) {
+            this.nom = nom;
+    }
     public String getNom() {
         return nom;
     }
